@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.maxmind.geoip2.DatabaseReader;
@@ -25,7 +26,7 @@ public class GeoController {
 	ResourceLoader resourceLoader;
 	private DatabaseReader dbReader;
 	
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String sayHi() {
 		return "This part is working";
 	}
@@ -37,7 +38,7 @@ public class GeoController {
 	File database = resourceLoader.getResource("classpath:GeoLite2-City.mmdb").getFile();
 	return database;
 	}
-	@RequestMapping("/{ipaddress}")
+	@GetMapping("/{ipaddress}")
 	public List<GeoDto> getDetails(@PathVariable("ipaddress") String ipaddress) throws IOException, GeoIp2Exception {
 		
         dbReader = new DatabaseReader.Builder(dbLoader()).build();

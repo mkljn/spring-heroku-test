@@ -23,8 +23,8 @@ import com.maxmind.geoip2.model.CityResponse;
 @RequestMapping("/api")
 public class GeoController {
 	
-	//@Autowired
-	//private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 	@Autowired
 	ResourceLoader resourceLoader;
 	private DatabaseReader dbReader;

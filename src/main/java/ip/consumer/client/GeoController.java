@@ -17,14 +17,18 @@ import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
 
 @RestController
-@RequestMapping("/api")
 public class GeoController {
 	
-	@Autowired
-	private UserRepository userRepository;
+	//@Autowired
+	//private UserRepository userRepository;
 	@Autowired
 	ResourceLoader resourceLoader;
 	private DatabaseReader dbReader;
+	
+	@RequestMapping("/")
+	public String sayHi() {
+		return "This part is working";
+	}
 
 	
 	//File database = new File("C:\\Users\\MJ\\git\\geo-service\\src\\main\\resources\\static\\GeoLite2-City.mmdb");

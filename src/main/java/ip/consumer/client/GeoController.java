@@ -26,10 +26,10 @@ public class GeoController {
 	private DatabaseReader dbReader;
 
 	
-	File database = new File("C:\\Users\\MJ\\git\\geo-service\\src\\main\\resources\\static\\GeoLite2-City.mmdb");
+	//File database = new File("C:\\Users\\MJ\\git\\geo-service\\src\\main\\resources\\static\\GeoLite2-City.mmdb");
 	
 	public File dbLoader() throws IOException {
-	//File database = resourceLoader.getResource("classpath:static/GeoLite2-City.mmdb").getFile();
+	File database = resourceLoader.getResource("classpath:static/GeoLite2-City.mmdb").getFile();
 	return database;
 	}
 	@RequestMapping("/{ipaddress}")

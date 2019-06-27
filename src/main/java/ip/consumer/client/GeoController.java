@@ -3,7 +3,8 @@ package ip.consumer.client;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
-
+import java.util.Collections;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
@@ -33,7 +34,7 @@ public class GeoController {
 	return database;
 	}
 	@RequestMapping("/{ipaddress}")
-	public void getDetails(@PathVariable("ipaddress") String ipaddress) throws IOException, GeoIp2Exception {
+	public List<GeoDto> getDetails(@PathVariable("ipaddress") String ipaddress) throws IOException, GeoIp2Exception {
 		
         dbReader = new DatabaseReader.Builder(dbLoader()).build();
         
@@ -45,7 +46,8 @@ public class GeoController {
         String stateName = response.getLeastSpecificSubdivision().getName() != null ? response.getLeastSpecificSubdivision().getName() : "UNKNOWN";
         String postal = response.getPostal().getCode() != null ? response.getPostal().getCode().toString() : "UNKNOWN";
         
-        userRepository.save(new GeoDto(ipaddress,countryName,stateName, cityName,postal));	
+        //userRepository.save(new GeoDto(ipaddress,countryName,stateName, cityName,postal));
+	return Collections.singletonList(new GeoDto(ipaddress,countryName,stateName, cityName,postal));	
 
       
         

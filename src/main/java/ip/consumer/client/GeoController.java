@@ -18,6 +18,7 @@ import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
 
 @RestController
+@RequestMapping("/api")
 public class GeoController {
 	
 	//@Autowired
@@ -38,7 +39,7 @@ public class GeoController {
 	File database = resourceLoader.getResource("classpath:GeoLite2-City.mmdb").getFile();
 	return database;
 	}
-	@GetMapping("/{ipaddress}")
+	@RequestMapping("/{ipaddress}")
 	public List<GeoDto> getDetails(@PathVariable("ipaddress") String ipaddress) throws IOException, GeoIp2Exception {
 		
         dbReader = new DatabaseReader.Builder(dbLoader()).build();

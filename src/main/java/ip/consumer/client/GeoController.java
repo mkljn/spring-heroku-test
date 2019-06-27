@@ -56,7 +56,7 @@ public class GeoController {
         String cityName = response.getCity().getName() != null ? response.getCity().getName() : "UNKNOWN";
         String stateName = response.getLeastSpecificSubdivision().getName() != null ? response.getLeastSpecificSubdivision().getName() : "UNKNOWN";
         String postal = response.getPostal().getCode() != null ? response.getPostal().getCode().toString() : "UNKNOWN";
-        dbReader.close()
+        dbReader.close();
         //userRepository.save(new GeoDto(ipaddress,countryName,stateName, cityName,postal));
 	return Collections.singletonList(new GeoDto(ipaddress,countryName,stateName, cityName,postal));	
 

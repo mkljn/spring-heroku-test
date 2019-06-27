@@ -1,12 +1,14 @@
 package ip.consumer.client;
 
-import java.io.File;
+//import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.InetAddress;
 import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,12 +35,15 @@ public class GeoController {
 	}
 
 	
-	//File database = new File("C:\\Users\\MJ\\git\\geo-service\\src\\main\\resources\\static\\GeoLite2-City.mmdb");
+	public InputStream dbLoader() throws IOException {
 	
-	public File dbLoader() throws IOException {
-	File database = resourceLoader.getResource("classpath:GeoLite2-City.mmdb").getFile();
-	return database;
+	ClassPathResource classPathResource = new ClassPathResource("GeoLite2-City.mmdb");
+	InputStream inputStream = classPathResource.getInputStream();
+	return inputStream;
+	
 	}
+	
+	
 	@RequestMapping("/{ipaddress}")
 	public List<GeoDto> getDetails(@PathVariable("ipaddress") String ipaddress) throws IOException, GeoIp2Exception {
 		
